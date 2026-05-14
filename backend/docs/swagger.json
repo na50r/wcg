@@ -1,0 +1,1480 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is the API for Wombo Combo Go",
+        "title": "WomboCombo Go API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:3030",
+    "basePath": "/",
+    "paths": {
+        "/account/{username}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get an account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Get an account",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.AccountDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Edit an account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Edit an account",
+                "parameters": [
+                    {
+                        "description": "Account to edit",
+                        "name": "account",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.EditAccountRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/account/{username}/images": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all potential profile pictures",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Get all potential profile pictures",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ImagesResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/account/{username}/leaderboard": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get the leaderboard",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    ""
+                ],
+                "summary": "Get the leaderboard",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.ChallengeEntryDTO"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/accounts": {
+            "post": {
+                "description": "Register an account",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "account"
+                ],
+                "summary": "Register an account",
+                "parameters": [
+                    {
+                        "description": "Account to register",
+                        "name": "account",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RegisterRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/broadcast": {
+            "post": {
+                "description": "Broadcast a message to all clients",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "events"
+                ],
+                "summary": "Broadcast a message to all clients",
+                "parameters": [
+                    {
+                        "description": "Message to broadcast",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/game.Message"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Message sent",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "405": {
+                        "description": "Method not allowed",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/events": {
+            "get": {
+                "description": "Server-Sent Events",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "events"
+                ],
+                "summary": "Server-Sent Events",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/game.Message"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/games/{lobbyCode}/{playerName}/combinations": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Make a move",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game"
+                ],
+                "summary": "Make a move",
+                "parameters": [
+                    {
+                        "description": "Move to make",
+                        "name": "move",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.WordRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.WordResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/games/{lobbyCode}/{playerName}/end": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "End a game",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game"
+                ],
+                "summary": "End a game (owner)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/games/{lobbyCode}/{playerName}/game": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get game stats",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game"
+                ],
+                "summary": "Get game stats",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GameEndResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Start a game",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game"
+                ],
+                "summary": "Start a game (owner)",
+                "parameters": [
+                    {
+                        "description": "Game to start",
+                        "name": "game",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.StartGameRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Delete a game",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game"
+                ],
+                "summary": "Delete a game (owner)",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/games/{lobbyCode}/{playerName}/words": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get a player's words",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game"
+                ],
+                "summary": "Get a player's words",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.Words"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/lobbies": {
+            "get": {
+                "description": "Get all lobbies",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lobby"
+                ],
+                "summary": "Get all lobbies",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.LobbiesDTO"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Join a lobby",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lobby"
+                ],
+                "summary": "Join a lobby",
+                "parameters": [
+                    {
+                        "description": "Lobby to join",
+                        "name": "lobby",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.JoinLobbyRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.JoinLobbyRespone"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a lobby",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lobby"
+                ],
+                "summary": "Create a lobby (requires account)",
+                "parameters": [
+                    {
+                        "description": "Lobby to create",
+                        "name": "lobby",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateLobbyRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateLobbyResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/lobbies/{lobbyCode}/{playerName}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get a lobby",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lobby"
+                ],
+                "summary": "Get a lobby",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.LobbyDTO"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/lobbies/{lobbyCode}/{playerName}/edit": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Edit a game mode in the lobby",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lobby"
+                ],
+                "summary": "Edit a game mode in the lobby (owner)",
+                "parameters": [
+                    {
+                        "description": "Game mode to change to",
+                        "name": "game",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.EditGameRequest"
+                        }
+                    },
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/lobbies/{lobbyCode}/{playerName}/leave": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Leave a lobby",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "lobby"
+                ],
+                "summary": "Leave a lobby",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Lobby code",
+                        "name": "lobbyCode",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Player name",
+                        "name": "playerName",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "Authenticates a user and returns a JWT token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Log in an account",
+                "parameters": [
+                    {
+                        "description": "Username and password",
+                        "name": "login",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.LoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Logs out a user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Log out an account",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GenericResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    },
+                    "405": {
+                        "description": "Method Not Allowed",
+                        "schema": {
+                            "$ref": "#/definitions/dto.APIError"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "constants.GameMode": {
+            "type": "string",
+            "enum": [
+                "Vanilla",
+                "Wombo Combo",
+                "Fusion Frenzy",
+                "Daily Challenge"
+            ],
+            "x-enum-varnames": [
+                "VANILLA",
+                "WOMBO_COMBO",
+                "FUSION_FRENZY",
+                "DAILY_CHALLENGE"
+            ]
+        },
+        "constants.Status": {
+            "type": "string",
+            "enum": [
+                "ONLINE",
+                "OFFLINE"
+            ],
+            "x-enum-varnames": [
+                "ONLINE",
+                "OFFLINE"
+            ]
+        },
+        "dto.APIError": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.AccountDTO": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "description": "ISO8601 creation timestamp",
+                    "type": "string"
+                },
+                "image": {
+                    "description": "Base64-encoded image",
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "imageName": {
+                    "description": "Name of the user's profile image",
+                    "type": "string"
+                },
+                "losses": {
+                    "description": "Number of losses",
+                    "type": "integer"
+                },
+                "status": {
+                    "description": "ONLINE or OFFLINE",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/constants.Status"
+                        }
+                    ]
+                },
+                "username": {
+                    "description": "Username of the account",
+                    "type": "string"
+                },
+                "wins": {
+                    "description": "Number of wins",
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.AchievementDTO": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                },
+                "unlocked": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "dto.ChallengeEntryDTO": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "username": {
+                    "type": "string"
+                },
+                "wordCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.CreateLobbyRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateLobbyResponse": {
+            "type": "object",
+            "properties": {
+                "lobby": {
+                    "$ref": "#/definitions/dto.LobbyDTO"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.EditAccountRequest": {
+            "type": "object",
+            "properties": {
+                "imageName": {
+                    "type": "string"
+                },
+                "newPassword": {
+                    "type": "string"
+                },
+                "oldPassword": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.EditGameRequest": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "integer"
+                },
+                "gameMode": {
+                    "$ref": "#/definitions/constants.GameMode"
+                }
+            }
+        },
+        "dto.GameEndResponse": {
+            "type": "object",
+            "properties": {
+                "gameMode": {
+                    "$ref": "#/definitions/constants.GameMode"
+                },
+                "manualEnd": {
+                    "type": "boolean"
+                },
+                "playerResults": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.PlayerResultDTO"
+                    }
+                },
+                "winner": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GenericResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ImagesResponse": {
+            "type": "object",
+            "properties": {
+                "names": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dto.JoinLobbyRequest": {
+            "type": "object",
+            "properties": {
+                "lobbyCode": {
+                    "type": "string"
+                },
+                "playerName": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.JoinLobbyRespone": {
+            "type": "object",
+            "properties": {
+                "lobby": {
+                    "$ref": "#/definitions/dto.LobbyDTO"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.LobbiesDTO": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "lobbyCode": {
+                    "type": "string"
+                },
+                "playerCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.LobbyDTO": {
+            "type": "object",
+            "properties": {
+                "gameMode": {
+                    "$ref": "#/definitions/constants.GameMode"
+                },
+                "gameModes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/constants.GameMode"
+                    }
+                },
+                "lobbyCode": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner": {
+                    "type": "string"
+                },
+                "players": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.PlayerDTO"
+                    }
+                }
+            }
+        },
+        "dto.LoginRequest": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.PlayerDTO": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.PlayerResultDTO": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "playerName": {
+                    "type": "string"
+                },
+                "points": {
+                    "type": "integer"
+                },
+                "wordCount": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.RegisterRequest": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.StartGameRequest": {
+            "type": "object",
+            "properties": {
+                "duration": {
+                    "type": "integer"
+                },
+                "gameMode": {
+                    "$ref": "#/definitions/constants.GameMode"
+                },
+                "withTimer": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "dto.WordRequest": {
+            "type": "object",
+            "properties": {
+                "a": {
+                    "type": "string"
+                },
+                "b": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.WordResponse": {
+            "type": "object",
+            "properties": {
+                "isNew": {
+                    "type": "boolean"
+                },
+                "result": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.Words": {
+            "type": "object",
+            "properties": {
+                "targetWord": {
+                    "type": "string"
+                },
+                "words": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "game.Message": {
+            "type": "object",
+            "properties": {
+                "data": {}
+            }
+        }
+    },
+    "securityDefinitions": {
+        "BearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

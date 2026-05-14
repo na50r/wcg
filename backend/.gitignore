@@ -1,0 +1,15 @@
+.env
+.env.local
+*.db
+*.db*
+api_test.go
+bin/
+*.csv
+*.sh
+*.txt
+*.yml
+DevDockerfile
+
+# Seeded data
+icons/
+achievement_icons/
