@@ -50,3 +50,21 @@ Define a connection string in `data/.env` and run:
 make docker-build
 API_KEY=<COHERE_API_KEY> CONN_STR=<POSTGRES_CONNECTION> make docker-seed-ext
 ```
+
+### Environment (Dev)
+```
+DB=SQLITE
+POSTGRES_CONNECTION=nope
+COHERE_API_KEY=<SECRET>
+JWT_SECRET=hunter42
+CLIENT=http://localhost:5173
+
+// Download icons
+ICONS=/home/na50r/personal/wcg/backend/icons
+
+// Prepare a data directory
+ACHIEVEMENT_ICONS=/home/na50r/personal/wcg/backend/data/achievement_icons
+COMBINATIONS=/home/na50r/personal/wcg/backend/data/Combinations.csv
+WORDS=/home/na50r/personal/wcg/backend/data/Words.csv
+ACHIEVEMENTS=/home/na50r/personal/wcg/backend/data/Achievements.csv
+```
